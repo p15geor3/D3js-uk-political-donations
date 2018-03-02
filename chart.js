@@ -23,7 +23,7 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var fill = d3.scale.ordinal().range(["#F02233", "#087FBD", "#FDBB30"]);
+var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -129,11 +129,21 @@ function start() {
 			.attr("r", function(d) { return d.radius; });
 }
 
+
 function total() {
 
 	force.gravity(0)
 		.friction(0.9)
 		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.8; })
+		.on("tick", all)
+		.start();
+}
+
+function amountType() {
+	
+	force.gravity(0)
+		.friction(0.75)
+		.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
 		.on("tick", all)
 		.start();
 }
@@ -193,7 +203,34 @@ function all(e) {
 			.attr("cy", function(d) {return d.y; });
 }
 
+function amounts(e) {
+	node.each(moveToAmount(e.alpha));
 
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
+
+function moveToAmount(alpha) {
+	return function(d) {
+		if (d.value <= 500000){
+			centreX = svgCentre.x ;
+			centreY = svgCentre.y -50;
+		} else if (d.value <= 5000000){
+			centreX = svgCentre.x +100 ;
+			centreY = svgCentre.y -50;
+		} else if (d.value <= 10000000){
+			centreX = svgCentre.x +150;
+			centreY = svgCentre.y +50;
+		} else {
+			centreX = svgCentre.x +220;
+			centreY = svgCentre.y -160;
+		}
+		
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	}
+}
+		
 function moveToCentre(alpha) {
 	return function(d) {
 		var centreX = svgCentre.x + 75;
