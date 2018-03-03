@@ -7,6 +7,7 @@ var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
 var sound = new Audio("Page turn sound effect.mp3");
+var GoogleSearch = "https://www.google.com?search";
     
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
@@ -114,6 +115,7 @@ function start() {
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout);
+	 	.on("click", function(d) { window.open(GoogleSearch + d.donor)});
 		// Alternative title based 'tooltips'
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
