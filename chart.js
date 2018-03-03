@@ -21,7 +21,7 @@ var entityCentres = {
 		other: {x: w / 1.15, y: h / 1.9},
 		society: {x: w / 1.12, y: h  / 3.2 },
 		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3},
+		individual: {x: w / 3.65, y: h / 3.3}
 	};
 
 var fill = d3.scale.ordinal().range(["#FF0000", "#FFFF00", "#0000CC"]);
@@ -144,7 +144,7 @@ function total() {
 function amountType() {
 	
 	force.gravity(0)
-		.friction(0.8)
+		.friction(0.85)
 		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.5; })
 		.on("tick", all)
 		.start();
@@ -216,13 +216,13 @@ function moveToAmount(alpha) {
 	return function(d) {
 		if (d.value <= 500000){
 			centreX = svgCentre.x ;
-			centreY = svgCentre.y  +15;
+			centreY = svgCentre.y  -15;
 		} else if (d.value <= 5000000){
-			centreX = svgCentre.x  ;
-			centreY = svgCentre.y +20;
+			centreX = svgCentre.x +150 ;
+			centreY = svgCentre.y ;
 		} else if (d.value <= 10000000){
 			centreX = svgCentre.x ;
-			centreY = svgCentre.y +40;
+			centreY = svgCentre.y +300;
 		} else {
 			centreX = svgCentre.x ;
 			centreY = svgCentre.y +200;
