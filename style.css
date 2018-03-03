@@ -51,26 +51,26 @@ li {
 }
 
 #Upto500000 {
-    left: 110px;
+    left: 150px;
     top: 250px;
     position: absolute;
 }
 
 #Upto5000000 {
-    left: 200px;
+    left: 750px;
     top: 250px;
     position: absolute;
 }
 
 #Upto10000000 {
-    left: 300px;
-    top: 250px;
+    left: 150px;
+    top: 800px;
     position: absolute;
 }
 
 #Upto20000000 {
-    left: 400px;
-    top: 250px;
+    left: 750px;
+    top: 800px;
     position: absolute;
 }
 
