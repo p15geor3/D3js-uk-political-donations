@@ -7,7 +7,7 @@ var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
 var sound = new Audio("Page turn sound effect.mp3");
-var GoogleSearch = "https://www.google.com";
+var GoogleSearch = "https://www.google.com/search?";
     
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
