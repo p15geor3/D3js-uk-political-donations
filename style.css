@@ -50,6 +50,13 @@ li {
     position: absolute;
 }
 
+#Upto500000 {
+    left: 200px;
+    top: 100px;
+    position: absolute;
+}
+
+
 /*  Public or private funds view */
 
 #public-or-private-money {
