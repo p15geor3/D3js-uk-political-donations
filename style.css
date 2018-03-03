@@ -40,6 +40,16 @@ li {
     width: 272px;
 }
 
+#view-amount-type {
+    height: 100%;
+}
+
+#amountofdonation {
+    left: 200px;
+    top: 250px;
+    position: absolute;
+}
+
 /*  Public or private funds view */
 
 #public-or-private-money {
