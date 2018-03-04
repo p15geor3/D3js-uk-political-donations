@@ -405,7 +405,9 @@ function mouseover(d, i) {
 		.html(infoBox)
 			.style("display","block");
 	
-	voice.speak("The donator named " + donor + " who donated the amount of " + amount + " british pounds");
+	var voice = window.speechSynthesis;
+	var vmsg = new SpeechSynthesisUtterance("The donator named " + donor + " who donated the amount of " + amount + " british pounds");
+	voice.speak(vmsg);
 	
 	}
 
