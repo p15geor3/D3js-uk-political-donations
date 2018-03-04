@@ -221,18 +221,19 @@ function amounts(e) {
 
 function moveToAmount(alpha) {
 	return function(d) {
+		
 		if (d.value <= 500000){
-			centreX = amountCentres.x ;
-			centreY = amountCentres.y  -15;
+			centreX = amountCentres.first.x ;
+			centreY = amountCentres.first.y  -15;
 		} else if (d.value <= 5000000){
-			centreX = amountCentres.x +150 ;
-			centreY = amountCentres.y ;
+			centreX = amountCentres.second.x +150 ;
+			centreY = amountCentres.second.y ;
 		} else if (d.value <= 10000000){
-			centreX = amountCentres.x ;
-			centreY = amountCentres.y +300;
+			centreX = amountCentres.third.x ;
+			centreY = amountCentres.third.y +300;
 		} else {
-			centreX = amountCentres.x ;
-			centreY = amountCentres.y +200;
+			centreX = amountCentres.fourth.x ;
+			centreY = amountCentres.fourth.y +200;
 		}
 		
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
