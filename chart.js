@@ -420,7 +420,7 @@ function mouseout() {
 		d3.select(".tooltip")
 			.style("display", "none");
 	
-		window.speechSynthesis(cancel);
+		window.speechSynthesis.cancel();
 		}
 
 $(document).ready(function() {
