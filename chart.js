@@ -10,7 +10,7 @@ var sound = new Audio("Page turn sound effect.mp3");
 var GoogleSearch = "http://www.google.com/search?q=";
 
 var amountCentres = {
-	first: {x: w / 4, y: h / 3.5},
+	first: {x: w / 4, y: h / 13.5},
 	second: {x: w / 4, y: h / 3.3},
 	third: {x: w / 4, y: h / 2.3},
 	fourth: {x: w / 4, y: h / 2}
@@ -221,20 +221,19 @@ function amounts(e) {
 
 function moveToAmount(alpha) {
 	return function(d) {
-		var centreY = amountCentres[d.entity].y;
-		var centreX = amountCentres[d.entity].x;
+		
 		if (d.value <= 500000){
-			centreX = amountCentres.first.x ;
-			centreY = amountCentres.first.y  -15;
+			var centreX = amountCentres.first.x ;
+			var centreY = amountCentres.first.y  -15;
 		} else if (d.value <= 5000000){
-			centreX = amountCentres.second.x +150 ;
-			centreY = amountCentres.second.y ;
+			var centreX = amountCentres.second.x +150 ;
+			var centreY = amountCentres.second.y ;
 		} else if (d.value <= 10000000){
-			centreX = amountCentres.third.x ;
-			centreY = amountCentres.third.y +300;
+			var centreX = amountCentres.third.x ;
+			var centreY = amountCentres.third.y +300;
 		} else {
-			centreX = amountCentres.fourth.x ;
-			centreY = amountCentres.fourth.y +200;
+			var centreX = amountCentres.fourth.x ;
+			var centreY = amountCentres.fourth.y +200;
 		}
 		
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
