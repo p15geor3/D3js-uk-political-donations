@@ -224,17 +224,17 @@ function moveToAmount(alpha) {
 		var centreX;
 		var centreY;
 		if (d.value <= 500000){
-			centreX = amountCentres.first.x;
-			centreY = mountCentres.first.y;
+			centreX = svgCentre.x;
+			centreY = svgCentre.y;
 		} else if (d.value <= 5000000){
-			centreX = amountCentres.second.x;
-			centreY = amountCentres.second.y;
+			centreX = svgCentre.x;
+			centreY = svgCentre.y;
 		} else if (d.value <= 10000000){
-			centreX = amountCentres.third.x;
-			centreY = amountCentres.third.y;
+			centreX = svgCentre.x;
+			centreY = svgCentre.y;
 		} else {
-			centreX = amountCentres.fourth.x;
-			centreY = amountCentres.fourth.y;
+			centreX = svgCentre.x;
+			centreY = svgCentre.y;
 		}
 		
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
