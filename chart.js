@@ -1,5 +1,5 @@
 // GLOBALS
-var w = 1500,h = 900;
+var w = 1000,h = 900;
 var padding = 2;
 var nodes = [];
 var force, node, data, maxVal;
@@ -9,13 +9,6 @@ var radius = d3.scale.sqrt().range([10, 20]);
 var sound = new Audio("Page turn sound effect.mp3");
 var GoogleSearch = "http://www.google.com/search?q=";
 
-var amountCentres = {
-	first: {x: w / 4, y: h / 13.5},
-	second: {x: w / 4, y: h / 3.3},
-	third: {x: w / 4, y: h / 2.3},
-	fourth: {x: w / 4, y: h / 2}
-};
-    
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
     lab: {x: w / 3, y: h / 2.3}, 
