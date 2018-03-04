@@ -8,6 +8,13 @@ var radius = d3.scale.sqrt().range([10, 20]);
 
 var sound = new Audio("Page turn sound effect.mp3");
 var GoogleSearch = "http://www.google.com/search?q=";
+
+var amountCentres = {
+	first: {x: w / 4, y: h / 3.5},
+	second: {x: w / 4, y: h / 3.3},
+	third: {x: w / 4, y: h / 2.3},
+	fourth: {x: w / 4, y: h / 2}
+};
     
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
@@ -215,17 +222,17 @@ function amounts(e) {
 function moveToAmount(alpha) {
 	return function(d) {
 		if (d.value <= 500000){
-			centreX = svgCentre.x ;
-			centreY = svgCentre.y  -15;
+			centreX = amountCentres.x ;
+			centreY = amountCentres.y  -15;
 		} else if (d.value <= 5000000){
-			centreX = svgCentre.x +150 ;
-			centreY = svgCentre.y ;
+			centreX = amountCentres.x +150 ;
+			centreY = amountCentres.y ;
 		} else if (d.value <= 10000000){
-			centreX = svgCentre.x ;
-			centreY = svgCentre.y +300;
+			centreX = amountCentres.x ;
+			centreY = amountCentres.y +300;
 		} else {
-			centreX = svgCentre.x ;
-			centreY = svgCentre.y +200;
+			centreX = amountCentres.x ;
+			centreY = amountCentres.y +200;
 		}
 		
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
