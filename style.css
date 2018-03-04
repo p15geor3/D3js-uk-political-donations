@@ -51,8 +51,8 @@ li {
 }
 
 #Upto500000 {
-    left: 150px;
-    top: 250px;
+    left: 200px;
+    top: 200px;
     position: absolute;
 }
 
@@ -70,7 +70,7 @@ li {
 
 #Upto20000000 {
     left: 750px;
-    top: 800px;
+    top: 700px;
     position: absolute;
 }
 
