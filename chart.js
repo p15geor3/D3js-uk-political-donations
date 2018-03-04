@@ -221,7 +221,8 @@ function amounts(e) {
 
 function moveToAmount(alpha) {
 	return function(d) {
-		
+		var centreY = entityCentres[d.entity].y;
+		var centreX = entityCentres[d.entity].x;
 		if (d.value <= 500000){
 			centreX = amountCentres.first.x ;
 			centreY = amountCentres.first.y  -15;
