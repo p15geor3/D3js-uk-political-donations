@@ -224,11 +224,11 @@ function moveToAmount(alpha) {
 		var centreX;
 		var centreY;
 		if (d.value <= 500000){
-			centreX = svgCentre.x;
-			centreY = svgCentre.y -70;
+			centreX = svgCentre.x +70;
+			centreY = svgCentre.y -120;
 		} else if (d.value <= 5000000){
-			centreX = svgCentre.x +100;
-			centreY = svgCentre.y -20;
+			centreX = svgCentre.x +300;
+			centreY = svgCentre.y ;
 		} else if (d.value <= 10000000){
 			centreX = svgCentre.x +250;
 			centreY = svgCentre.y +100;
