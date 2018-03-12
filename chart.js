@@ -22,7 +22,7 @@ var entityCentres = {
 	};
 
 var fill = {
-	d3.scale.ordinal().range(["#000000", "#8A2BE2", "#FFD700"]);
+	d3.scale.ordinal().range(["#2F4F4F", "#CD5C5C", "#FFA07A"]);
 };
 
 var svgCentre = { 
@@ -36,7 +36,7 @@ var svg = d3.select("#chart").append("svg")
 
 var nodeGroup = svg.append("g");
 
-var tooltip = d3.select("#chart")
+var tooltip = d3.select("chart")
  	.append("div")
 	.attr("class", "tooltip")
 	.attr("id", "tooltip");
