@@ -4,6 +4,7 @@ var padding = 2;
 var nodes = [];
 var force, node, data, maxVal;
 var brake = 0.2;
+var sound = new Audio("Sound.mp3"); // vazw ixo 
 var radius = d3.scale.sqrt().range([10, 20]);
 
 var partyCentres = { 
@@ -21,9 +22,7 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var fill = {
-	d3.scale.ordinal().range(["#2F4F4F", "#CD5C5C", "#FFA07A"]);
-};
+var fill = d3.scale.ordinal().range(["#FF4500", "#800000", "#B0C4DE"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -36,7 +35,7 @@ var svg = d3.select("#chart").append("svg")
 
 var nodeGroup = svg.append("g");
 
-var tooltip = d3.select("chart")
+var tooltip = d3.select("#chart")
  	.append("div")
 	.attr("class", "tooltip")
 	.attr("id", "tooltip");
@@ -45,38 +44,62 @@ var comma = d3.format(",.0f");
 
 function transition(name) {
 	if (name === "all-donations") {
+		sound.currentTime=0; // paizei o ixos
+		sound.play();
 		$("#initial-content").fadeIn(250);
 		$("#value-scale").fadeIn(1000);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
+		$("#view-amount-type").fadeOut(250); // gia th nea taksinomisi
 		return total();
 		//location.reload();
 	}
 	if (name === "group-by-party") {
+		sound.currentTime=0; // paizei o ixos
+		sound.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250); // gia th nea taksinomisi
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
+		sound.currentTime=0; // paizei o ixos
+		sound.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250); // gia th nea taksinomisi
 		return donorType();
 	}
 	if (name === "group-by-money-source") {
+		sound.currentTime=0; // paizei o ixos
+		sound.play();
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250); // gia th nea taksinomisi
 		return fundsType();
 	}
+	if (name === "group-by-amount") { //arxikopoiei thn kainourgia taksinomisi
+		sound.currentTime=0; //paizei o ixos
+		sound.play();
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(1000);
+		$("#view-amount-type").fadeIn(250);
+		return amountType();
+	}
+}
 
 function start() {
 
@@ -109,6 +132,21 @@ function start() {
 			.duration(2500)
 			.attr("r", function(d) { return d.radius; });
 }
+
+
+
+function amountType() { //sinartisi gia to amount
+	force.gravity(0)
+		.friction(0.75)
+		.charge(function(d) { return - Math.pow(d.radius , 2) / 3})
+		.on("tick", all)
+		.start();
+	
+	node.transition()
+		.duration(2500)
+		.attr("r", function(d) { return d.radius; });
+}
+
 
 function total() {
 
@@ -144,6 +182,14 @@ function fundsType() {
 		.start();
 }
 
+/* function amounts(e) { 
+	node.each(moveToAmount(e.alpha));
+		
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) { return d.y;});
+}
+*/
+
 function parties(e) {
 	node.each(moveToParties(e.alpha));
 
@@ -174,6 +220,24 @@ function all(e) {
 			.attr("cy", function(d) {return d.y; });
 }
 
+/* function moveToAmount(alpha) {
+	return function(d) {
+		if (d.value <= 50000) { 
+			centreX = svgCentre.x ;
+			centreY = svgCentre.y -50;
+		} else if (d.value <= 350000) { 
+			centreX = svgCentre.x + 150;
+			centreY = svgCentre.y ;
+		} else if (d.value <= 2000000){ 
+			centreX = svgCentre.x + 300;
+			centreY = svgCentre.y + 50;
+		}
+
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+}
+*/ 
 
 function moveToCentre(alpha) {
 	return function(d) {
@@ -318,11 +382,15 @@ function mouseover(d, i) {
 	var entity = d.entityLabel;
 	var offset = $("svg").offset();
 	
-
+	// plirofories tou kiklou
+	
+	var infoBox = "<p>Source:<b>" + donor + "</b></p>"
+							+ "<p> Recipient: <b>" + party + "</b></p>"
+							+ "<p> Type of donor: <b>" + entity + "</b></p>"
+							+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
 
 	// image url that want to check
 	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
-
 	
 	
 	// *******************************************
@@ -348,10 +416,23 @@ function mouseover(d, i) {
 			.style("display","block");
 	
 	
+	//gia na akougontai oi plirofories tou kuklou
+	var msg = new SpeechSynthesisUtterance("The donator is " + donor + " and the amount he gave is " + amount + " british pounds");
+	window.speechSynthesis.speak(msg);
+	
+	mosie.classed("active", true);
+	d3.select(".tooltip")
+  	.style("left", (parseInt(d3.select(this).attr("cx") - 80) + offset.left) + "px")
+ 	.style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
+		.html(infoBox)
+			.style("display","block");
+	
 	}
 
 function mouseout() {
 	// no more tooltips
+		window.speechSynthesis.cancel();
+	
 		var mosie = d3.select(this);
 
 		mosie.classed("active", false);
@@ -368,5 +449,3 @@ $(document).ready(function() {
     return d3.csv("data/7500up.csv", display);
 
 });
-
-
