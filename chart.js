@@ -21,7 +21,9 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var fill = d3.scale.ordinal().range(["#000000", "#8A2BE2", "#FFD700"]);
+var fill = {
+	d3.scale.ordinal().range(["#000000", "#8A2BE2", "#FFD700"]);
+};
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -67,7 +69,7 @@ function transition(name) {
 		$("#view-donor-type").fadeIn(1000);
 		return donorType();
 	}
-	if (name === "group-by-money-source")
+	if (name === "group-by-money-source") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
