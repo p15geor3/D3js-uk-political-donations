@@ -1,6 +1,5 @@
 // GLOBALS
 var sound = new Audio("Sound.mp3");
-var Google = "http://www.google.com/search?q=";
 var w = 1000,h = 900;
 var padding = 2;
 var nodes = [];
