@@ -370,8 +370,8 @@ function mouseover(d, i) {
 	
 	
 	//gia na akougontai oi plirofories tou kuklou
-	var msg = new SpeechSynthesisUtterance("The donator is " + donor + " and the amount he gave is " + amount + " british pounds");
-	window.speechSynthesis.speak(msg);
+	var message = new SpeechSynthesisUtterance("The donator is " + donor + " and the amount that he gave is " + amount + " british pounds");
+	window.speechSynthesis.speak(message);
 	
 	mosie.classed("active", true);
 	d3.select(".tooltip")
