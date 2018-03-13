@@ -191,6 +191,28 @@ function amounts(e) {
 			.attr("cy", function(d) {return d.y; });
 }
 
+function moveToAmount(alpha) {
+	return function(d) {
+		var centreX;
+		var centreY;
+		if (d.value <= 500000){
+			centreX = svgCentre.x +70;
+			centreY = svgCentre.y -70;
+		} else if (d.value <= 5000000){
+			centreX = svgCentre.x +450;
+			centreY = svgCentre.y -70;
+		} else if (d.value <= 10000000){
+			centreX = svgCentre.x +70;
+			centreY = svgCentre.y +250;
+		} else {
+			centreX = svgCentre.x +500;
+			centreY = svgCentre.y +250;
+		}
+		
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+}
 
 function moveToCentre(alpha) {
 	return function(d) {
@@ -215,28 +237,7 @@ function moveToCentre(alpha) {
 		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
 	};
 }
-function moveToAmount(alpha) {
-	return function(d) {
-		var centreX;
-		var centreY;
-		if (d.value <= 500000){
-			centreX = svgCentre.x +70;
-			centreY = svgCentre.y -70;
-		} else if (d.value <= 5000000){
-			centreX = svgCentre.x +450;
-			centreY = svgCentre.y -70;
-		} else if (d.value <= 10000000){
-			centreX = svgCentre.x +70;
-			centreY = svgCentre.y +250;
-		} else {
-			centreX = svgCentre.x +500;
-			centreY = svgCentre.y +250;
-		}
-		
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
-}
+
 
 function moveToParties(alpha) {
 	return function(d) {
