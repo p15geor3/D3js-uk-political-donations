@@ -4,7 +4,7 @@ var padding = 2;
 var nodes = [];
 var force, node, data, maxVal;
 var brake = 0.2;
-var sound = new Audio("Sound.mp3"); 
+var sound = new Audio("Psycho Violin Screech.mp3"); 
 var radius = d3.scale.sqrt().range([10, 20]);
 
 var partyCentres = { 
