@@ -1,5 +1,6 @@
 // GLOBALS
 var sound = new Audio("Sound.mp3");
+var Search = "http://www.google.com/search?q=";
 var w = 1000,h = 900;
 var padding = 2;
 var nodes = [];
@@ -90,7 +91,6 @@ function start() {
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
-	<p><a href="https://www.google.gr/search?source=.attr("class", function(d) { return "node " + d.party; })"</a></p>
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
 		.attr("donor", function(d) { return d.donor; })
@@ -106,6 +106,7 @@ function start() {
 		// Alternative title based 'tooltips'
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
+		.on("click", function(d) { window.open(Search + d.donor)});
 
 		force.gravity(0)
 			.friction(0.75)
