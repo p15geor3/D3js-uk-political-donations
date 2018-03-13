@@ -90,6 +90,7 @@ function start() {
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
+	<a href="https://www.google.gr/search?source=.attr("class", function(d) { return "node " + d.party; })"</a>
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
 		.attr("donor", function(d) { return d.donor; })
