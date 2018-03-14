@@ -291,6 +291,8 @@ function moveToFunds(alpha) {
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
+}	
+	
 function moveToDonation(alpha) {
 	return function(d) {
 		var centreX = svgCentre.x + 75;
