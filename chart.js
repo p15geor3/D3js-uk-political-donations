@@ -51,7 +51,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
-		$("#view-donation-type").fadeOut(250);
+		$("#view-amount-type").fadeOut(250);
 		return total();
 		//location.reload();
 	}
@@ -63,7 +63,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
-                $("#view-donation-type").fadeOut(250);
+                $("#view-amount-type").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
@@ -74,7 +74,7 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
-		$("#view-donation-type").fadeOut(250);
+		$("#view-amount-type").fadeOut(250);
 		return donorType();
 	}
 	if (name === "group-by-money-source") {
@@ -85,7 +85,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
-		$("#view-donation-type").fadeOut(250);
+		$("#view-amount-type").fadeOut(250);
 		return fundsType();
 	}
 	if (name === "group-by-donation") {
@@ -94,8 +94,8 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
-		$("#view-donation-type").fadeIn(1000);
-        return donationType();
+		$("#view-amount-type").fadeIn(1000);
+        return amountType();
         }
 }
 	
@@ -169,14 +169,14 @@ function fundsType() {
 		.on("tick", types)
 		.start();
 }
-function donationType() {
+function amountType() {
 	force.gravity(0)
 		.friction(0.75)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
 		.on("tick", donation)
 		.start();
 }
-function donation(e) {
+function amounts(e) {
     node.each(moveToDonation(e.alpha));
 
 
@@ -287,33 +287,27 @@ function moveToFunds(alpha) {
 	};
 }	
 	
-function moveToAmount(alpha) {
+function moveToAmounts(alpha) {
 	return function(d) {
-		
-		if (d.value <= 50000) { 
-			centreX = svgCentre.x ;
-			centreY = svgCentre.y + 50;
-		} else if (d.value <= 100000) { 
-			centreX = svgCentre.x + 250;
-			centreY = svgCentre.y + 60;
-		} else if (d.value <= 500000){ 
-			centreX = svgCentre.x + 450;
-			centreY = svgCentre.y + 70;
-		} else if (d.value <= 1000000) {
-			centreX = svgCentre.x;
-			centreY = svgCentre.y - 160;
-	        } else if (d.value <= 3000000) {
-			centreX = svgCentre.x + 260;
-			centreY = svgCentre.y - 170;
-		} else if (d.value <= 5000000) {
-			centreX = svgCentre.x + 260;
-			centreY = svgCentre.y - 170;
-		} else  if (d.value <= maxVal) {
-                        centreY = svgCentre.y - 130;
-		}
+		var centreY = svgCentre.y;
+		if (d.value <= 25001) {
+				centreX = svgCentre.x + 250;
+			} else if (d.value <= 50001) {
+			        centreX = svgCentre.x + 200;
+			} else if (d.value <= 100001) {
+				centreX = svgCentre.x + 175;
+			} else  if (d.value <= 500001) {
+				centreX = svgCentre.x + 150;
+			} else  if (d.value <= 1000001) {
+				centreX = svgCentre.x +80;
+			} else if (d.value<= maxVal) {	
+				centreX =svgCentre.x;
+			} else {
+				centreX = svgCentre.x;
+			}
 
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		d.y += (centreY - d.y) * (brake + 0.06) * alpha * 1.2;
 };
 }
 
