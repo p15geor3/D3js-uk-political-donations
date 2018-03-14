@@ -179,7 +179,7 @@ function types(e) {
 function all(e) {
 	node.each(moveToCentre(e.alpha))
 		.each(collide(0.001));
-
+	
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
@@ -387,6 +387,9 @@ function mouseover(d, i) {
 		.html(infoBox)
 			.style("display","block");
 	
+	var voice = window.speechSynthesis;
+	var vmsg = new SpeechSynthesisUtterance("The donator named " + donor + " who donated the amount of " + amount + " british pounds");
+	voice.speak(vmsg);
 	
 	}
 
