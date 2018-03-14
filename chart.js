@@ -287,29 +287,34 @@ function moveToFunds(alpha) {
 	};
 }	
 	
-function moveToDonation(alpha) {
+function moveToAmount(alpha) {
 	return function(d) {
-		var centreX = svgCentre.x + 75;
-			if (d.value <= 50000) {
-				centreY = svgCentre.y + 300;
-                centreX = svgCentre.x + 550;
-			} else if (d.value <= 150000) and (d.value >= 50001) {
-				centreY = svgCentre.y + 300;
-			} else if (d.value <= 700000) and (d.value >= 150001)  {
-				centreY = svgCentre.y + 110;
-                centreX = svgCentre.x + 535;
-			} else  if (d.value <= 1000000) and (d.value >= 700001) {
-				centreY = svgCentre.y + 50;
-                centreX = svgCentre.x + 535;
-			} else  if (d.value <= maxVal) {
-				centreY = svgCentre.y - 130;
-			} else {
-				centreY = svgCentre.y;
-			}
+		
+		if (d.value <= 50000) { 
+			centreX = svgCentre.x ;
+			centreY = svgCentre.y + 50;
+		} else if (d.value <= 100000) { 
+			centreX = svgCentre.x + 250;
+			centreY = svgCentre.y + 60;
+		} else if (d.value <= 500000){ 
+			centreX = svgCentre.x + 450;
+			centreY = svgCentre.y + 70;
+		} else if (d.value <= 1000000) {
+			centreX = svgCentre.x;
+			centreY = svgCentre.y - 160;
+	        } else if (d.value <= 3000000) {
+			centreX = svgCentre.x + 260;
+			centreY = svgCentre.y - 170;
+		} else if (d.value <= 5000000) {
+			centreX = svgCentre.x + 260;
+			centreY = svgCentre.y - 170;
+		} else  if (d.value <= maxVal) {
+                        centreY = svgCentre.y - 130;
+		}
 
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
-	};
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+};
 }
 
 // Collision detection function by m bostock
