@@ -21,7 +21,7 @@ li {
 
 /* 	Information boxes for different chart layouts */
 /* Positioning */
-#initial-content, #a, #b, #c, #d, #e, #f, #view-party-type, #view-donor-type, #view-source-type, #partyInfo, #conservative, #labour, #libdem, #individual, #company, #union, #society, #other, #public-or-private-money, #public-or-private-money-split, #private-money, #public-money { 
+#initial-content, #a, #b, #c, #d, #e, #f,#1, #2, #3, #4, #view-party-type, #view-donor-type, #view-source-type, #partyInfo, #conservative, #labour, #libdem, #individual, #company, #union, #society, #other, #public-or-private-money, #public-or-private-money-split, #private-money, #public-money { 
     position: absolute; 
 }
 
@@ -76,22 +76,22 @@ li {
     top: 550px;
 }
 
-#ID25K {
+#1 {
     left: 200px;
     top: 500px;
     position: absolute;
 }
-#ID500K {
+#2 {
     left: 600px;
     top: 520px;
     position: absolute;    
 }
-#ID5M {
+#3 {
     left: 100px;
     top: 150px;
     position: absolute; 
 }
-#ID20M {    
+#4 {    
     left: 400px;
     top: 170px;
     position: absolute;    
