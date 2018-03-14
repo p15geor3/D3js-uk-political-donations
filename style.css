@@ -76,6 +76,27 @@ li {
     top: 550px;
 }
 
+#ID25K {
+    left: 200px;
+    top: 500px;
+    position: absolute;
+}
+#ID500K {
+    left: 600px;
+    top: 520px;
+    position: absolute;    
+}
+#ID5M {
+    left: 100px;
+    top: 150px;
+    position: absolute; 
+}
+#ID20M {    
+    left: 400px;
+    top: 170px;
+    position: absolute;    
+}
+
 /*	Donor type layout */
 #view-donor-type {
     height: 100%;
