@@ -51,8 +51,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
-		$("#view-donation-type1").fadeOut(250);
-                $("#view-donation-type2").fadeOut(250);
+		$("#view-donation-type").fadeOut(250);
 		return total();
 		//location.reload();
 	}
@@ -64,8 +63,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
-		$("#view-donation-type1").fadeOut(250);
-                $("#view-donation-type2").fadeOut(250);
+                $("#view-donation-type").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
@@ -76,8 +74,7 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
-		$("#view-donation-type1").fadeOut(250);
-                $("#view-donation-type2").fadeOut(250);
+		$("#view-donation-type").fadeOut(250);
 		return donorType();
 	}
 	if (name === "group-by-money-source") {
@@ -88,8 +85,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
-		$("#view-donation-type1").fadeOut(250);
-                $("#view-donation-type2").fadeOut(250);
+		$("#view-donation-type").fadeOut(250);
 		return fundsType();
 	}
 	if (name === "group-by-donation") {
@@ -97,9 +93,8 @@ function transition(name) {
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeOut(1000);
-		$("#view-donation-type1").fadeIn(1000);
-                $("#view-donation-type2").fadeIn(1000);
+		$("#view-source-type").fadeOut(250);
+		$("#view-donation-type").fadeIn(1000);
         return donationType();
         }
 }
@@ -174,7 +169,7 @@ function fundsType() {
 		.on("tick", types)
 		.start();
 }
-/*function donationType() {
+function donationType() {
 	force.gravity(0)
 		.friction(0.75)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
@@ -187,7 +182,7 @@ function donation(e) {
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
-}*/
+}
 
 
 function parties(e) {
