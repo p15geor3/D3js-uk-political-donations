@@ -104,7 +104,6 @@ function transition(name) {
         }
 }
 	
-}
 
 function start() {
 
