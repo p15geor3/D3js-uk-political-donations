@@ -48,6 +48,8 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
+		$("#view-donation-type1").fadeOut(250);
+                $("#view-donation-type2").fadeOut(250);
 		return total();
 		//location.reload();
 	}
@@ -57,6 +59,8 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		$("#view-donation-type1").fadeOut(250);
+                $("#view-donation-type2").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
@@ -65,16 +69,31 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		$("#view-donation-type1").fadeOut(250);
+                $("#view-donation-type2").fadeOut(250);
 		return donorType();
 	}
-	if (name === "group-by-money-source")
+	if (name === "group-by-money-source"){
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+	        $("#view-donation-type1").fadeOut(250);
+                $("#view-donation-type2").fadeOut(250);
 		return fundsType();
 	}
+if (name === "group-by-donation") {
+        $("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(1000);
+		$("#view-donation-type1").fadeIn(1000);
+                $("#view-donation-type2").fadeIn(1000);
+        return donationType();
+        }
+}
 
 function start() {
 
@@ -142,6 +161,21 @@ function fundsType() {
 		.start();
 }
 
+function donationType() {
+	force.gravity(0)
+		.friction(0.75)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", donation)
+		.start();
+}
+
+function donation(e) {
+    node.each(moveToDonation(e.alpha));
+
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
 function parties(e) {
 	node.each(moveToParties(e.alpha));
 
@@ -241,6 +275,30 @@ function moveToFunds(alpha) {
 	};
 }
 
+function moveToDonation(alpha) {
+	return function(d) {
+		var centreX = svgCentre.x + 75;
+			if (d.value <= 50000) {
+				centreY = svgCentre.y + 300;
+                centreX = svgCentre.x + 550;
+			} else if (d.value <= 150000) and (d.value >= 50001) {
+				centreY = svgCentre.y + 300;
+			} else if (d.value <= 700000) and (d.value >= 150001)  {
+				centreY = svgCentre.y + 110;
+                centreX = svgCentre.x + 535;
+			} else  if (d.value <= 1000000) and (d.value >= 700001) {
+				centreY = svgCentre.y + 50;
+                centreX = svgCentre.x + 535;
+			} else  if (d.value <= maxVal) {
+				centreY = svgCentre.y - 130;
+			} else {
+				centreY = svgCentre.y;
+			}
+
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
+	};
+}
 // Collision detection function by m bostock
 function collide(alpha) {
   var quadtree = d3.geom.quadtree(nodes);
