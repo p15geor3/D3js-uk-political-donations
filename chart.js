@@ -60,8 +60,8 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
 		/*$("#view-donation-type1").fadeOut(250);
-                $("#view-donation-type2").fadeOut(250);
-		return partyGroup(); */
+                $("#view-donation-type2").fadeOut(250);*/
+		return partyGroup(); 
 	}
 	if (name === "group-by-donor-type") {
 		$("#initial-content").fadeOut(250);
