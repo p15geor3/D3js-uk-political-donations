@@ -390,9 +390,9 @@ function mouseover(d, i) {
 		.html(infoBox)
 			.style("display","block");
 	
-	var voice = window.speechSynthesis;
-	var vmsg = new SpeechSynthesisUtterance("The donator named " + donor + " who donated the amount of " + amount + " british pounds");
-	voice.speak(vmsg);
+	var voicedonator = window.speechSynthesis;
+	var voicemessage= new SpeechSynthesisUtterance("The donator named " + donor + " who donated the amount of " + amount + " british pounds");
+	voicedonator.speak(voicemessage);
 	
 	}
 
