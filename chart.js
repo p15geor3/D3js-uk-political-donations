@@ -177,7 +177,7 @@ function amountType() {
 		.start();
 }
 function amounts(e) {
-    node.each(moveToDonation(e.alpha));
+    node.each(moveToAmount(e.alpha));
 
 
 		node.attr("cx", function(d) { return d.x; })
